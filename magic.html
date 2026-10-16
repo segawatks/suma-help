@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>魔法の水槽</title>
+  <style>
+    :root {
+      --primary: rgb(47,85,138);
+      --text: rgb(16,32,67);
+      --bg: rgb(253,255,249);
+      --accent: rgb(250,140,230);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      line-height: 1.85;
+      padding: 40px 24px calc(80px + env(safe-area-inset-bottom));
+      max-width: 600px;
+      margin: 0 auto;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ─── PAGE TITLE ─── */
+    .new-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 99px;
+      padding: 1px 9px;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .page-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .page-lead {
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 90%;
+      height: 1px;
+      background: rgba(16,32,67,0.12);
+      margin: 40px auto;
+    }
+
+    /* ─── SECTION ─── */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      line-height: 1.4;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    .sub-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 27px;
+    }
+
+    /* ─── PHONE FRAME ─── */
+    .phone-frame {
+      width: 180px;
+      border: 2px solid rgba(47,85,138,0.2);
+      border-radius: 22px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .phone-inner {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .phone-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .phone-inner video {
+      width: 100%;
+      aspect-ratio: 200 / 432;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* 画像が入るまでの仮枠 */
+    .placeholder {
+      aspect-ratio: 200 / 432;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(16,32,67,0.4);
+      background: linear-gradient(160deg, rgba(47,85,138,0.06) 0%, rgba(250,140,230,0.08) 100%);
+    }
+
+    /* ─── STEPS ─── */
+    .step-item {
+      padding: 32px 0;
+    }
+
+    .step-lead {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 19px;
+    }
+
+    .triple-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .phone-frame-sm {
+      flex: 1 1 0;
+      min-width: 0;
+      aspect-ratio: 200 / 432;
+      border: 2px solid rgba(47,85,138,0.2);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .phone-frame-sm .phone-inner {
+      border-radius: 14px;
+      height: 100%;
+    }
+
+    .phone-frame-sm img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .arrow-icon {
+      font-size: 1rem;
+      color: rgba(16,32,67,0.3);
+      flex-shrink: 0;
+    }
+
+    /* ─── POINT LIST ─── */
+    .point-list {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      padding-left: 1.4em;
+    }
+
+    .point-list li { margin-bottom: 16px; }
+
+    .point-list .note {
+      color: rgba(16,32,67,0.7);
+    }
+
+    /* ─── FAQ ─── */
+    .faq-item {
+      padding: 16px 0;
+      border-top: 1px solid rgba(16,32,67,0.08);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid rgba(16,32,67,0.08);
+    }
+
+    .faq-q {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .faq-q::before {
+      content: 'Q. ';
+      color: var(--primary);
+    }
+
+    .faq-a {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(16,32,67,0.85);
+    }
+
+    /* ─── 参考になったボタン ─── */
+    .naruhodo-wrap {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 32px;
+    }
+
+    .naruhodo-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px solid rgba(47,85,138,0.2);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      color: rgba(16,32,67,0.6);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .naruhodo-btn.tapped {
+      background: rgba(47,85,138,0.08);
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .naruhodo-count {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: rgba(16,32,67,0.35);
+      min-width: 16px;
+    }
+
+    .naruhodo-btn.tapped .naruhodo-count { color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <!-- ─── タイトル ─── -->
+  <span class="new-badge">NEW!</span>
+  <h1 class="page-title">魔法の水槽</h1>
+  <p class="page-lead">【リード文：魔法の水槽がどんな機能か、ひとことで。例「集中した時間が○○になって、水槽が少しずつ変化していく新しい水槽です。」】</p>
+
+  <!-- 紹介動画（mov/magic.mp4 を置けば表示されます） -->
+  <div class="phone-frame" style="margin-top:32px;">
+    <div class="phone-inner">
+      <video src="mov/magic.mp4" autoplay muted loop playsinline webkit-playsinline poster=""></video>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── 始め方 ─── -->
+  <h2 class="section-title">始め方</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">【手順1：魔法の水槽の開き方。例「水槽画面の右上の○○ボタンをタップ」】</p>
+      <div class="phone-frame">
+        <div class="phone-inner">
+          <!-- <img src="img/magic1.jpg" alt="魔法の水槽を開く"> -->
+          <div class="placeholder">img/magic1.jpg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">【手順2：設定・選択する内容】</p>
+      <div class="phone-frame">
+        <div class="phone-inner">
+          <!-- <img src="img/magic2.jpg" alt="設定"> -->
+          <div class="placeholder">img/magic2.jpg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">【手順3：集中するとどう変化するか。3枚並びの例】</p>
+      <div class="triple-row">
+        <div class="phone-frame-sm"><div class="phone-inner"><div class="placeholder">magic3.jpg</div></div></div>
+        <span class="arrow-icon">›</span>
+        <div class="phone-frame-sm"><div class="phone-inner"><div class="placeholder">magic4.jpg</div></div></div>
+        <span class="arrow-icon">›</span>
+        <div class="phone-frame-sm"><div class="phone-inner"><div class="placeholder">magic5.jpg</div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="naruhodo-wrap">
+    <button class="naruhodo-btn" data-key="suma-magic-start" onclick="naruhodo(this)">
+      参考になった <span class="naruhodo-count"></span>
+    </button>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── ポイント ─── -->
+  <h2 class="section-title">ここが魔法</h2>
+  <ol class="point-list">
+    <li>【ポイント1】<br><span class="note">【補足説明】</span></li>
+    <li>【ポイント2】<br><span class="note">【補足説明】</span></li>
+    <li>【ポイント3】<br><span class="note">【補足説明】</span></li>
+  </ol>
+
+  <div class="divider"></div>
+
+  <!-- ─── よくある質問 ─── -->
+  <h2 class="section-title">よくある質問</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <p class="faq-q">【質問1：例「今までの水槽の魚はどうなりますか？」】</p>
+      <p class="faq-a">【回答】</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">【質問2：例「サブスクに入っていなくても使えますか？」】</p>
+      <p class="faq-a">【回答】</p>
+    </div>
+  </div>
+
+  <div class="naruhodo-wrap">
+    <button class="naruhodo-btn" data-key="suma-magic-faq" onclick="naruhodo(this)">
+      参考になった <span class="naruhodo-count"></span>
+    </button>
+  </div>
+
+  <script>
+    // 動画：ファイルがなければ枠ごと隠す
+    document.querySelectorAll('video').forEach(v => {
+      v.addEventListener('error', () => { const f = v.closest('.phone-frame'); if (f) f.style.display = 'none'; }, true);
+      const src = v.getAttribute('src');
+      if (src) fetch(src, { method: 'HEAD' }).then(r => { if (!r.ok) v.dispatchEvent(new Event('error')); }).catch(() => {});
+      v.play().catch(() => {});
+    });
+
+    // 参考になったボタン（ヤメッターHowToと同じカウンター）
+    const API = 'https://abacus.jasoncameron.dev';
+
+    function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+    async function naruhodo(btn) {
+      const key = btn.dataset.key;
+      const countEl = btn.querySelector('.naruhodo-count');
+      if (safeGet(key)) return;
+      btn.disabled = true;
+      try {
+        const res = await fetch(`${API}/hit/${key}/naruhodo`);
+        const data = await res.json();
+        countEl.textContent = data.value;
+        btn.classList.add('tapped');
+        safeSet(key, '1');
+      } catch (e) {
+        btn.disabled = false;
+      }
+    }
+
+    document.querySelectorAll('.naruhodo-btn').forEach(async btn => {
+      const key = btn.dataset.key;
+      const countEl = btn.querySelector('.naruhodo-count');
+      if (safeGet(key)) btn.classList.add('tapped');
+      try {
+        const res = await fetch(`${API}/get/${key}/naruhodo`);
+        const data = await res.json();
+        countEl.textContent = data.value ?? 0;
+      } catch (e) {
+        countEl.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>
