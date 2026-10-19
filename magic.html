@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>魔法の水槽</title>
   <style>
     :root {
@@ -18,371 +18,304 @@
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
-      line-height: 1.85;
-      padding: 40px 24px calc(80px + env(safe-area-inset-bottom));
+      line-height: 1.6;
+      padding: 40px 24px 80px;
       max-width: 600px;
       margin: 0 auto;
-      -webkit-text-size-adjust: 100%;
     }
 
-    /* ─── PAGE TITLE ─── */
-    .new-badge {
-      display: inline-block;
+    h1 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 40px;
+      font-weight: 500;
+      opacity: 0.75;
+    }
+
+    /* ─── ROADMAP ─── */
+    .roadmap {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    /* 縦ライン */
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: rgba(47,85,138,0.15);
+    }
+
+    .step {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    /* ドット */
+    .step::before {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+      z-index: 1;
+    }
+
+    .step.now::before {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(250,140,230,0.2);
+    }
+
+
+    /* 吹き出し本体 */
+    .bubble {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border: 1.5px solid rgba(47,85,138,0.12);
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(47,85,138,0.06);
+    }
+
+    .step.now .bubble {
+      border-color: rgba(250,140,230,0.4);
+      background: rgba(255,245,253,1);
+    }
+
+
+    /* 吹き出しの三角（左向き） */
+    .bubble::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: 7px 8px 7px 0;
+      border-color: transparent rgba(47,85,138,0.12) transparent transparent;
+    }
+
+    .bubble::after {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: 6px 7px 6px 0;
+      border-color: transparent #fff transparent transparent;
+    }
+
+    .step.now .bubble::after {
+      border-color: transparent rgba(255,245,253,1) transparent transparent;
+    }
+
+    .step.now .bubble::before {
+      border-color: transparent rgba(250,140,230,0.4) transparent transparent;
+    }
+
+
+    .step-label {
       font-size: 0.65rem;
-      font-weight: 600;
+      font-weight: 800;
       color: #fff;
       background: var(--accent);
+      display: inline-block;
+      padding: 1px 8px;
       border-radius: 99px;
-      padding: 1px 9px;
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
+      letter-spacing: 0.06em;
+      font-size: 0.75rem;
+      transform: translateY(-3px);
     }
 
-    .page-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-
-    .page-lead {
-      font-size: 1.05rem;
-      line-height: 1.85;
-    }
-
-    /* ─── DIVIDER ─── */
-    .divider {
-      width: 90%;
-      height: 1px;
-      background: rgba(16,32,67,0.12);
-      margin: 40px auto;
-    }
-
-    /* ─── SECTION ─── */
-    .section-title {
-      font-size: 1.15rem;
+    .step-text {
+      font-size: 0.88rem;
       font-weight: 600;
-      margin-bottom: 14px;
-      line-height: 1.4;
-      border-left: 4px solid var(--primary);
-      padding-left: 12px;
+      color: var(--text);
+      line-height: 1.5;
     }
 
-    .sub-title {
-      font-size: 1rem;
+    .step.last .step-text {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .step-sub {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(16,32,67,0.55);
+      margin-top: 3px;
+    }
+
+    /* ─── UPDATE LOG ─── */
+    .update-section {
+      margin-bottom: 36px;
+    }
+
+    .update-label {
+      font-size: 0.72rem;
       font-weight: 700;
-      line-height: 1.4;
+      color: rgba(16,32,67,0.45);
+      letter-spacing: 0.06em;
       margin-bottom: 8px;
     }
 
-    .section-lead {
-      font-size: 1.05rem;
-      line-height: 1.9;
-      margin-bottom: 27px;
+    .update-scroll {
+      max-height: 180px;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid rgba(16,32,67,0.1);
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: rgba(16,32,67,0.02);
     }
 
-    /* ─── PHONE FRAME ─── */
-    .phone-frame {
-      width: 180px;
-      border: 2px solid rgba(47,85,138,0.2);
-      border-radius: 22px;
-      overflow: hidden;
-      margin: 0 auto;
-    }
-
-    .phone-inner {
-      width: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-      background: var(--bg);
-    }
-
-    .phone-inner img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .phone-inner video {
-      width: 100%;
-      aspect-ratio: 200 / 432;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
-
-    /* 画像が入るまでの仮枠 */
-    .placeholder {
-      aspect-ratio: 200 / 432;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 12px;
-      font-size: 0.7rem;
+    .update-ver {
+      font-size: 0.8rem;
       font-weight: 700;
-      color: rgba(16,32,67,0.4);
-      background: linear-gradient(160deg, rgba(47,85,138,0.06) 0%, rgba(250,140,230,0.08) 100%);
-    }
-
-    /* ─── STEPS ─── */
-    .step-item {
-      padding: 32px 0;
-    }
-
-    .step-lead {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      margin-bottom: 19px;
-    }
-
-    .triple-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .phone-frame-sm {
-      flex: 1 1 0;
-      min-width: 0;
-      aspect-ratio: 200 / 432;
-      border: 2px solid rgba(47,85,138,0.2);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .phone-frame-sm .phone-inner {
-      border-radius: 14px;
-      height: 100%;
-    }
-
-    .phone-frame-sm img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .arrow-icon {
-      font-size: 1rem;
-      color: rgba(16,32,67,0.3);
-      flex-shrink: 0;
-    }
-
-    /* ─── POINT LIST ─── */
-    .point-list {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      padding-left: 1.4em;
-    }
-
-    .point-list li { margin-bottom: 16px; }
-
-    .point-list .note {
-      color: rgba(16,32,67,0.7);
-    }
-
-    /* ─── FAQ ─── */
-    .faq-item {
-      padding: 16px 0;
-      border-top: 1px solid rgba(16,32,67,0.08);
-    }
-
-    .faq-item:last-child {
-      border-bottom: 1px solid rgba(16,32,67,0.08);
-    }
-
-    .faq-q {
-      font-size: 1rem;
-      font-weight: 700;
+      color: var(--primary);
       margin-bottom: 6px;
     }
 
-    .faq-q::before {
-      content: 'Q. ';
-      color: var(--primary);
+    .update-list {
+      list-style: none;
+      padding: 0;
     }
 
-    .faq-a {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: rgba(16,32,67,0.85);
-    }
-
-    /* ─── 参考になったボタン ─── */
-    .naruhodo-wrap {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 32px;
-    }
-
-    .naruhodo-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: none;
-      border: 1.5px solid rgba(47,85,138,0.2);
-      border-radius: 99px;
-      padding: 6px 16px;
+    .update-list li {
       font-size: 0.82rem;
-      font-family: inherit;
-      color: rgba(16,32,67,0.6);
-      cursor: pointer;
-      transition: all 0.15s;
+      color: var(--text);
+      line-height: 1.7;
+      padding-left: 1em;
+      position: relative;
     }
 
-    .naruhodo-btn.tapped {
-      background: rgba(47,85,138,0.08);
-      border-color: var(--primary);
-      color: var(--primary);
+    .update-list li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: rgba(16,32,67,0.4);
+    }
+
+    .note {
+      margin-top: 36px;
+      padding-top: 36px;
+      font-size: 1rem;
+      color: #102043;
+      line-height: 1.85;
+    }
+
+    .note::before {
+      content: '';
+      display: block;
+      width: 90%;
+      height: 1px;
+      background: rgba(16,32,67,0.15);
+      margin: 0 auto 36px;
+    }
+
+    .note:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .note:first-child::before {
+      display: none;
+    }
+    .note.no-before::before { display: none; }
+
+    .section-title {
+      font-size: 1.15rem;
       font-weight: 600;
+      color: rgb(16,32,67);
+      margin-bottom: 14px;
+      line-height: 1.4;
+      border-left: 4px solid rgb(47,85,138);
+      padding-left: 12px;
     }
 
-    .naruhodo-count {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: rgba(16,32,67,0.35);
-      min-width: 16px;
-    }
+    /* ─── 魔法の水槽 追加分 ─── */
+    .dot { display:inline-block; width:10px; height:10px; border-radius:50%; background:rgb(47,85,138); margin-right:8px; vertical-align:middle; position:relative; top:-2px; }
+    .dot.pink { background: var(--accent); }
+    .item-title { font-size:1.05rem; color:#102043; font-weight:700; }
+    .item-body { display:block; margin-top:6px; }
+    .figure { border:1px solid rgba(16,32,67,0.5); margin:16px auto; display:block; max-width:85%; }
+    .figure.phone { max-width:60%; }
+    .figure img { width:100%; display:block; height:auto; }
+    .figure .ph { aspect-ratio: 3 / 2; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:rgba(16,32,67,0.4); background:rgba(47,85,138,0.06); }
+    .figure.phone .ph { aspect-ratio: 9 / 19.5; }
+    .box { background:rgba(47,85,138,0.06); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:1rem; line-height:1.8; }
+    .caution { font-size:1rem; color:#102043; line-height:1.85; margin-top:14px; padding-left:1em; text-indent:-1em; }
+    .btn { display:inline-block; background:rgb(250,140,230); color:#fff; font-weight:700; font-size:0.85rem; text-decoration:none; padding:8px 24px; border-radius:99px; }
 
-    .naruhodo-btn.tapped .naruhodo-count { color: var(--primary); }
+    .move-list { list-style:none; margin-top:12px; }
+    .move-list li { display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(47,85,138,0.06); border-radius:8px; margin-bottom:8px; font-size:1rem; }
+    .move-icon { flex-shrink:0; width:7.5em; font-size:0.82rem; font-weight:700; color:var(--primary); white-space:nowrap; }
   </style>
 </head>
 <body>
 
-  <!-- ─── タイトル ─── -->
-  <span class="new-badge">NEW!</span>
-  <h1 class="page-title">魔法の水槽</h1>
-  <p class="page-lead">【リード文：魔法の水槽がどんな機能か、ひとことで。例「集中した時間が○○になって、水槽が少しずつ変化していく新しい水槽です。」】</p>
+  <h2 class="section-title">魔法の水槽</h2>
 
-  <!-- 紹介動画（mov/magic.mp4 を置けば表示されます） -->
-  <div class="phone-frame" style="margin-top:32px;">
-    <div class="phone-inner">
-      <video src="mov/magic.mp4" autoplay muted loop playsinline webkit-playsinline poster=""></video>
-    </div>
+  <div class="figure" style="margin-top:0; border:none; max-width:none; width:95vw; margin-left:50%; transform:translateX(-50%);">
+    <img src="img/Tank1.png" alt="魔法の水槽" onerror="this.outerHTML='<div class=&quot;ph&quot;>img/Tank1.png</div>'">
   </div>
 
-  <div class="divider"></div>
-
-  <!-- ─── 始め方 ─── -->
-  <h2 class="section-title">始め方</h2>
-
-  <div class="steps">
-
-    <div class="step-item" style="padding-top:8px;">
-      <p class="step-lead">【手順1：魔法の水槽の開き方。例「水槽画面の右上の○○ボタンをタップ」】</p>
-      <div class="phone-frame">
-        <div class="phone-inner">
-          <!-- <img src="img/magic1.jpg" alt="魔法の水槽を開く"> -->
-          <div class="placeholder">img/magic1.jpg</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step-item">
-      <p class="step-lead">【手順2：設定・選択する内容】</p>
-      <div class="phone-frame">
-        <div class="phone-inner">
-          <!-- <img src="img/magic2.jpg" alt="設定"> -->
-          <div class="placeholder">img/magic2.jpg</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step-item">
-      <p class="step-lead">【手順3：集中するとどう変化するか。3枚並びの例】</p>
-      <div class="triple-row">
-        <div class="phone-frame-sm"><div class="phone-inner"><div class="placeholder">magic3.jpg</div></div></div>
-        <span class="arrow-icon">›</span>
-        <div class="phone-frame-sm"><div class="phone-inner"><div class="placeholder">magic4.jpg</div></div></div>
-        <span class="arrow-icon">›</span>
-        <div class="phone-frame-sm"><div class="phone-inner"><div class="placeholder">magic5.jpg</div></div></div>
-      </div>
-    </div>
-
+  <!-- ─── 概要 ─── -->
+  <div class="note no-before" style="margin-top:28px; padding-top:0;">
+    <span class="dot"></span><strong class="item-title">概要</strong>
+    <span class="item-body"></span>
+    魔法の水槽は、育成中のいきものを一時保管できる装置です。たとえば育成中のクマノミを水槽に移動して、ショップでヒゲペンギンを購入。ペンギンとクマノミを入れ替えながら、交互に育成することができます。水槽は最大5個まで取得できます（2個目以降は課金）。
   </div>
 
-  <div class="naruhodo-wrap">
-    <button class="naruhodo-btn" data-key="suma-magic-start" onclick="naruhodo(this)">
-      参考になった <span class="naruhodo-count"></span>
-    </button>
+  <!-- ─── 魚の移動 ─── -->
+  <div class="note no-before" style="padding-top:36px;">
+    <span class="dot"></span><strong class="item-title">魚の移動</strong>
+    <span class="item-body"></span>
+    次の3つの操作ができます。
+    <ul class="move-list">
+      <li><span class="move-icon">海 → 水槽</span>魚を海から水槽に移動</li>
+      <li><span class="move-icon">水槽 → 海</span>水槽の魚を海に移動</li>
+      <li><span class="move-icon">海 ⇄ 水槽</span>海の魚と水槽の魚を入れ替え</li>
+    </ul>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- ─── ポイント ─── -->
-  <h2 class="section-title">ここが魔法</h2>
-  <ol class="point-list">
-    <li>【ポイント1】<br><span class="note">【補足説明】</span></li>
-    <li>【ポイント2】<br><span class="note">【補足説明】</span></li>
-    <li>【ポイント3】<br><span class="note">【補足説明】</span></li>
-  </ol>
-
-  <div class="divider"></div>
-
-  <!-- ─── よくある質問 ─── -->
-  <h2 class="section-title">よくある質問</h2>
-  <div class="faq">
-    <div class="faq-item">
-      <p class="faq-q">【質問1：例「今までの水槽の魚はどうなりますか？」】</p>
-      <p class="faq-a">【回答】</p>
+  <!-- ─── 魔法のエサ ─── -->
+  <div class="note no-before" style="padding-top:36px;">
+    <span class="dot pink"></span><strong class="item-title">魔法のエサ</strong>
+    <span class="item-body"></span>
+    水槽に魚を移動させると、画面下にピンクの「魔法のエサを与える」ボタンが表示されます。魔法のエサは<strong>1日1回</strong>与えることができ、魚を<strong>1〜3％</strong>成長させます。
+    <br><br>
+    魔法のエサは以下の割合でランダムに排出されます。
+    <div class="figure" style="border:none;">
+      <img src="img/rarity.png" alt="魔法のエサの排出割合" onerror="this.outerHTML='<div class=&quot;ph&quot;>img/rarity.png</div>'">
     </div>
-    <div class="faq-item">
-      <p class="faq-q">【質問2：例「サブスクに入っていなくても使えますか？」】</p>
-      <p class="faq-a">【回答】</p>
+    <div class="box">
+      魔法のエサは以下の方法で補充できます。<br>
+      ・広告視聴<br>
+      ・課金<br>
+      ・サブスク加入で<strong>無制限</strong>
     </div>
+    <p class="caution">※エサを与えなくても、成長が減ったりいきものが弱ったりすることはありません。保管したときの状態のまま維持されます。</p>
+    <p class="caution">※成長バーが100%になると、水槽ではそれ以上成長しません。一度海に移動させて育ててください。</p>
   </div>
 
-  <div class="naruhodo-wrap">
-    <button class="naruhodo-btn" data-key="suma-magic-faq" onclick="naruhodo(this)">
-      参考になった <span class="naruhodo-count"></span>
-    </button>
-  </div>
-
-  <script>
-    // 動画：ファイルがなければ枠ごと隠す
-    document.querySelectorAll('video').forEach(v => {
-      v.addEventListener('error', () => { const f = v.closest('.phone-frame'); if (f) f.style.display = 'none'; }, true);
-      const src = v.getAttribute('src');
-      if (src) fetch(src, { method: 'HEAD' }).then(r => { if (!r.ok) v.dispatchEvent(new Event('error')); }).catch(() => {});
-      v.play().catch(() => {});
-    });
-
-    // 参考になったボタン（ヤメッターHowToと同じカウンター）
-    const API = 'https://abacus.jasoncameron.dev';
-
-    function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
-    function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-
-    async function naruhodo(btn) {
-      const key = btn.dataset.key;
-      const countEl = btn.querySelector('.naruhodo-count');
-      if (safeGet(key)) return;
-      btn.disabled = true;
-      try {
-        const res = await fetch(`${API}/hit/${key}/naruhodo`);
-        const data = await res.json();
-        countEl.textContent = data.value;
-        btn.classList.add('tapped');
-        safeSet(key, '1');
-      } catch (e) {
-        btn.disabled = false;
-      }
-    }
-
-    document.querySelectorAll('.naruhodo-btn').forEach(async btn => {
-      const key = btn.dataset.key;
-      const countEl = btn.querySelector('.naruhodo-count');
-      if (safeGet(key)) btn.classList.add('tapped');
-      try {
-        const res = await fetch(`${API}/get/${key}/naruhodo`);
-        const data = await res.json();
-        countEl.textContent = data.value ?? 0;
-      } catch (e) {
-        countEl.textContent = '';
-      }
-    });
-  </script>
 </body>
 </html>
