@@ -305,5 +305,37 @@
     <p class="caution">成長バーが100%になると、水槽ではそれ以上成長しません。一度海に移動させて育ててください。</p>
   </div>
 
+  <!-- ─── 不具合・要望 ─── -->
+  <div class="note">
+    <span class="dot"></span><strong class="item-title">不具合・要望</strong>
+    <span class="item-body"></span>
+    慎重に実装・デバッグしましたが、大きな新機能なので不具合があるかもしれません。以下のフォームからご報告いただけるとありがたいです。
+    <div style="text-align:center; margin-top:20px;">
+      <a class="btn" id="supportFormLink" href="https://docs.google.com/forms/d/e/1FAIpQLSfAbEC09ejcwi7Z74gOrFVf-cIduNoTfpPkPhnloxMWZYAAnw/viewform?usp=pp_url" target="_blank" rel="noopener">お問い合わせ</a>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    // アプリから渡すクエリ名 → Googleフォームの entry 番号
+    // 「事前入力したURLを取得」で出てきた entry.〜 に置き換える。項目を増やすときはここに足すだけ
+    var FIELDS = {
+      id: 'entry.1706333131'   // 端末ID
+      // , v:  'entry.000000000'  // アプリのバージョン
+      // , os: 'entry.000000000'  // iOSのバージョン
+    };
+
+    var link = document.getElementById('supportFormLink');
+    if (!link) return;
+    var params = new URLSearchParams(location.search);
+    var url = new URL(link.href);
+    Object.keys(FIELDS).forEach(function (key) {
+      var value = params.get(key);
+      if (value) url.searchParams.set(FIELDS[key], value);
+    });
+    link.href = url.toString();
+  })();
+  </script>
+
 </body>
 </html>
