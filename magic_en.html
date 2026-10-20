@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic Tank</title>
+  <style>
+    :root {
+      --primary: rgb(47,85,138);
+      --text: rgb(16,32,67);
+      --bg: rgb(253,255,249);
+      --accent: rgb(250,140,230);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      line-height: 1.6;
+      padding: 40px 24px 80px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 40px;
+      font-weight: 500;
+      opacity: 0.75;
+    }
+
+    /* ─── ROADMAP ─── */
+    .roadmap {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    /* 縦ライン */
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: rgba(47,85,138,0.15);
+    }
+
+    .step {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    /* ドット */
+    .step::before {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+      z-index: 1;
+    }
+
+    .step.now::before {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(250,140,230,0.2);
+    }
+
+
+    /* 吹き出し本体 */
+    .bubble {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border: 1.5px solid rgba(47,85,138,0.12);
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(47,85,138,0.06);
+    }
+
+    .step.now .bubble {
+      border-color: rgba(250,140,230,0.4);
+      background: rgba(255,245,253,1);
+    }
+
+
+    /* 吹き出しの三角（左向き） */
+    .bubble::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: 7px 8px 7px 0;
+      border-color: transparent rgba(47,85,138,0.12) transparent transparent;
+    }
+
+    .bubble::after {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: 6px 7px 6px 0;
+      border-color: transparent #fff transparent transparent;
+    }
+
+    .step.now .bubble::after {
+      border-color: transparent rgba(255,245,253,1) transparent transparent;
+    }
+
+    .step.now .bubble::before {
+      border-color: transparent rgba(250,140,230,0.4) transparent transparent;
+    }
+
+
+    .step-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #fff;
+      background: var(--accent);
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 99px;
+      margin-bottom: 4px;
+      letter-spacing: 0.06em;
+      font-size: 0.75rem;
+      transform: translateY(-3px);
+    }
+
+    .step-text {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .step.last .step-text {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .step-sub {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(16,32,67,0.55);
+      margin-top: 3px;
+    }
+
+    /* ─── UPDATE LOG ─── */
+    .update-section {
+      margin-bottom: 36px;
+    }
+
+    .update-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(16,32,67,0.45);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .update-scroll {
+      max-height: 180px;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid rgba(16,32,67,0.1);
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: rgba(16,32,67,0.02);
+    }
+
+    .update-ver {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .update-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .update-list li {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.7;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .update-list li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: rgba(16,32,67,0.4);
+    }
+
+    .note {
+      margin-top: 36px;
+      padding-top: 36px;
+      font-size: 1rem;
+      color: #102043;
+      line-height: 1.85;
+    }
+
+    .note::before {
+      content: '';
+      display: block;
+      width: 90%;
+      height: 1px;
+      background: rgba(16,32,67,0.15);
+      margin: 0 auto 36px;
+    }
+
+    .note:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .note:first-child::before {
+      display: none;
+    }
+    .note.no-before::before { display: none; }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: rgb(16,32,67);
+      margin-bottom: 14px;
+      line-height: 1.4;
+      border-left: 4px solid rgb(47,85,138);
+      padding-left: 12px;
+    }
+
+    /* ─── 魔法の水槽 追加分 ─── */
+    .dot { display:inline-block; width:10px; height:10px; border-radius:50%; background:rgb(47,85,138); margin-right:8px; vertical-align:middle; position:relative; top:-2px; }
+    .dot.pink { background: var(--accent); }
+    .item-title { font-size:1.05rem; color:#102043; font-weight:700; }
+    .item-body { display:block; margin-top:6px; }
+    .figure { border:1px solid rgba(16,32,67,0.5); margin:16px auto; display:block; max-width:85%; }
+    .figure.phone { max-width:60%; }
+    .figure img { width:100%; display:block; height:auto; }
+    .figure .ph { aspect-ratio: 3 / 2; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:rgba(16,32,67,0.4); background:rgba(47,85,138,0.06); }
+    .figure.phone .ph { aspect-ratio: 9 / 19.5; }
+    .box { background:rgba(47,85,138,0.06); border-radius:8px; padding:10px 14px; margin-top:12px; font-size:1rem; line-height:1.8; }
+    .caution { font-size:1rem; color:#102043; line-height:1.85; margin-top:14px; }
+    .btn { display:inline-block; background:rgb(250,140,230); color:#fff; font-weight:700; font-size:0.85rem; text-decoration:none; padding:8px 24px; border-radius:99px; }
+
+    .move-list { list-style:none; margin-top:12px; }
+    .move-list li { display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(47,85,138,0.06); border-radius:8px; margin-bottom:8px; font-size:1rem; }
+    .move-icon { flex-shrink:0; width:7.5em; font-size:0.82rem; font-weight:700; color:var(--primary); white-space:nowrap; }
+  </style>
+</head>
+<body>
+
+  <h2 class="section-title">Magic Tank</h2>
+  <p style="font-size:0.85rem; color:rgba(16,32,67,0.55); line-height:1.7; margin:-4px 0 16px;">In this guide, "fish" also includes penguins and other creatures.</p>
+
+  <div class="figure" style="margin-top:0; border:none; max-width:800px; width:95vw; margin-left:50%; transform:translateX(-50%);">
+    <img src="img/Tank1_en.jpg" alt="Magic Tank" onerror="this.outerHTML='<div class=&quot;ph&quot;>img/Tank1_en.jpg</div>'">
+  </div>
+
+  <!-- ─── Overview ─── -->
+  <div class="note no-before" style="margin-top:28px; padding-top:0;">
+    <span class="dot"></span><strong class="item-title">Overview</strong>
+    <span class="item-body"></span>
+    The Magic Tank lets you store a fish you're raising for a while. For example, move your clownfish into the tank, then buy a chinstrap penguin at the shop. You can swap the penguin and the clownfish back and forth and raise them in turns. You can get up to 5 tanks.
+  </div>
+
+  <!-- ─── Magic Food ─── -->
+  <div class="note no-before" style="padding-top:36px;">
+    <span class="dot"></span><strong class="item-title">Magic Food</strong>
+    <span class="item-body"></span>
+    Once a day, you can give Magic Food to each fish in a tank to help it grow a little. Magic Food is randomly chosen from 3 types, each with its own drop rate and growth rate.
+    <div class="figure" style="border:none; max-width:800px; width:85vw; margin-left:50%; transform:translateX(-50%);">
+      <img src="img/rarity_en.jpg" alt="Magic Food drop rates" onerror="this.outerHTML='<div class=&quot;ph&quot;>img/rarity_en.jpg</div>'">
+    </div>
+
+    <div class="box">
+      You can refill Magic Food in these ways:<br>
+      ・Watch an ad: +15<br>
+      ・Purchase: +150<br>
+      ・Subscribe: unlimited
+    </div>
+    <p class="caution">Even if you don't feed them, your fish won't lose growth or get weaker.</p>
+    <p class="caution">Once the growth bar reaches 100%, the fish can't grow any more in the tank. Move it back to the sea to keep raising it.</p>
+  </div>
+
+  <!-- ─── Bugs & Requests ─── -->
+  <div class="note no-before" style="padding-top:36px;">
+    <span class="dot"></span><strong class="item-title">Bugs &amp; Requests</strong>
+    <span class="item-body"></span>
+    If you find a bug or have a request about the Magic Tank, please let us know using the form below. Thank you!<br>
+    <span style="font-size:0.85rem; color:rgba(16,32,67,0.55);">* The form is available in Japanese only.</span>
+    <div style="text-align:center; margin-top:20px;">
+      <a class="btn" id="supportFormLink" href="https://docs.google.com/forms/d/e/1FAIpQLSfAbEC09ejcwi7Z74gOrFVf-cIduNoTfpPkPhnloxMWZYAAnw/viewform?usp=pp_url" target="_blank" rel="noopener">Contact Us</a>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    // アプリから渡すクエリ名 → Googleフォームの entry 番号
+    // 「事前入力したURLを取得」で出てきた entry.〜 に置き換える。項目を増やすときはここに足すだけ
+    var FIELDS = {
+      id: 'entry.1706333131'   // 端末ID
+      // , v:  'entry.000000000'  // アプリのバージョン
+      // , os: 'entry.000000000'  // iOSのバージョン
+    };
+
+    var link = document.getElementById('supportFormLink');
+    if (!link) return;
+    var params = new URLSearchParams(location.search);
+    var url = new URL(link.href);
+    Object.keys(FIELDS).forEach(function (key) {
+      var value = params.get(key);
+      if (value) url.searchParams.set(FIELDS[key], value);
+    });
+    link.href = url.toString();
+  })();
+  </script>
+
+</body>
+</html>
