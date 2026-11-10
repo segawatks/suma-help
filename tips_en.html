@@ -127,6 +127,11 @@
       margin-bottom: 19px;
     }
 
+    .dot { display:inline-block; width:10px; height:10px; border-radius:50%; background:rgb(47,85,138); margin-right:8px; vertical-align:middle; position:relative; top:-2px; }
+    .item-title { font-size:1.05rem; color:#102043; font-weight:700; }
+    .item-body { display:block; margin-top:6px; }
+    .btn { display:inline-block; background:rgb(250,140,230); color:#fff; font-weight:700; font-size:0.85rem; text-decoration:none; padding:8px 24px; border-radius:99px; }
+
     .back-to-toc {
       text-align: center;
       margin-top: 16px;
@@ -241,6 +246,37 @@
   </div>
 
   <div class="back-to-toc"><a href="#toc">Back to top</a></div>
+
+  <div class="divider"></div>
+
+  <!-- ─── Bugs & Requests ─── -->
+  <div style="font-size:1rem; line-height:1.85;">
+    <span class="dot"></span><strong class="item-title">Bugs &amp; Requests</strong>
+    <span class="item-body"></span>
+    If you find a bug or have a request, please let us know using the form below. Thank you!
+    <div style="text-align:center; margin-top:20px;">
+      <a class="btn" id="supportFormLink" href="https://docs.google.com/forms/d/e/1FAIpQLSe8i8EtGupWxv7z-wvh2-zzJrUIblRnRHZbq1GjYPGru_pp8w/viewform?usp=pp_url" target="_blank" rel="noopener">Contact Us</a>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    // Query name from the app → Google Form entry ID
+    var FIELDS = {
+      id: 'entry.1706333131'   // Device ID
+    };
+
+    var link = document.getElementById('supportFormLink');
+    if (!link) return;
+    var params = new URLSearchParams(location.search);
+    var url = new URL(link.href);
+    Object.keys(FIELDS).forEach(function (key) {
+      var value = params.get(key);
+      if (value) url.searchParams.set(FIELDS[key], value);
+    });
+    link.href = url.toString();
+  })();
+  </script>
 
 </body>
 </html>
