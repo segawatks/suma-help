@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips</title>
+  <style>
+    :root {
+      --primary: rgb(47,85,138);
+      --text: rgb(16,32,67);
+      --bg: rgb(253,255,249);
+      --accent: rgb(250,140,230);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      line-height: 1.85;
+      padding: 48px 24px 100px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ─── TOC ─── */
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(16,32,67,0.45);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .toc {
+      margin-bottom: 32px;
+    }
+
+    .toc a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 0;
+      border-top: 1px solid rgba(16,32,67,0.08);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.78rem;
+    }
+
+    .toc a:first-of-type {
+      border-top: none;
+    }
+
+    .toc-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(16,32,67,0.3);
+      min-width: 20px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 90%;
+      height: 1px;
+      background: rgba(16,32,67,0.12);
+      margin: 40px auto;
+    }
+
+    /* ─── SECTION ─── */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.4;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    /* ─── PHONE FRAME ─── */
+    .phone-frame {
+      width: 180px;
+      border: 2px solid rgba(47,85,138,0.2);
+      border-radius: 22px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .phone-frame.part {
+      width: 240px;
+    }
+
+    .phone-frame.wide {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+    }
+
+    .phone-frame.flat,
+    .phone-frame.flat .phone-inner {
+      border-radius: 0;
+    }
+
+    .phone-inner {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .phone-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ─── STEPS ─── */
+    .step-item {
+      padding: 32px 0;
+    }
+
+    .step-lead {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 19px;
+    }
+
+    .back-to-toc {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .back-to-toc a {
+      font-size: 0.82rem;
+      color: rgba(16,32,67,0.8);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="toc-label">Tips</p>
+  <nav class="toc" id="toc">
+    <a href="#lockwidget"><span class="toc-num">01</span>Lock Screen Widget</a>
+    <a href="#homewidget"><span class="toc-num">02</span>Home Screen Widget</a>
+    <a href="#schedule"><span class="toc-num">03</span>Schedule</a>
+  </nav>
+
+  <!-- Lock Screen Widget -->
+  <h2 class="section-title" id="lockwidget">Lock Screen Widget</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">Check your timer without unlocking your iPhone.</p>
+      <div class="phone-frame part flat">
+        <div class="phone-inner"><img src="img/lwid1.jpg" alt="Lock Screen Widget"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">Lock your iPhone, then touch and hold the Lock Screen.</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid2.jpg" alt="Touch and hold the Lock Screen"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">Tap "Add Widget".</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid3.jpg" alt="Tap Add Widget"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">Find "Focus &amp; Fish" in the list and tap it.</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid4.jpg" alt="Tap Focus &amp; Fish"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">There are two widgets, large and small. Choose the one you like.</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid5.jpg" alt="Choose a widget"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">Finally, don't forget to tap "Done" at the top right.</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid6.jpg" alt="Tap Done"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">Back to top</a></div>
+
+  <div class="divider"></div>
+
+  <!-- Home Screen Widget -->
+  <h2 class="section-title" id="homewidget">Home Screen Widget</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">Touch and hold the app icon on your Home Screen to turn it into a Home Screen widget.</p>
+      <div class="phone-frame flat">
+        <div class="phone-inner"><img src="img/hwid1.jpg" alt="Touch and hold the app icon"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">The widget shows the time left on your timer and the time left until the deadlines you set on the Chart screen.</p>
+      <div class="phone-frame wide flat">
+        <div class="phone-inner"><img src="img/hwid2.jpg" alt="Home Screen Widget"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">Back to top</a></div>
+
+  <div class="divider"></div>
+
+  <!-- Schedule -->
+  <h2 class="section-title" id="schedule">Schedule</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">Turn on "Focus Time Schedule" in the Control Panel and open "Schedule Settings".<br>Here you can set Focus Time to start automatically on any day and at any time you choose.<br>From "Schedule-specific Settings", you can set blocked apps and a default Focus Time length just for scheduled sessions.</p>
+      <div class="phone-frame wide flat">
+        <div class="phone-inner"><img src="img/schedule1.jpg" alt="Schedule Settings"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">Back to top</a></div>
+
+</body>
+</html>
