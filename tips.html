@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>便利な使い方</title>
+  <style>
+    :root {
+      --primary: rgb(47,85,138);
+      --text: rgb(16,32,67);
+      --bg: rgb(253,255,249);
+      --accent: rgb(250,140,230);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      line-height: 1.85;
+      padding: 48px 24px 100px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ─── TOC ─── */
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(16,32,67,0.45);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .toc {
+      margin-bottom: 32px;
+    }
+
+    .toc a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 0;
+      border-top: 1px solid rgba(16,32,67,0.08);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.78rem;
+    }
+
+    .toc a:first-of-type {
+      border-top: none;
+    }
+
+    .toc-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(16,32,67,0.3);
+      min-width: 20px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 90%;
+      height: 1px;
+      background: rgba(16,32,67,0.12);
+      margin: 40px auto;
+    }
+
+    /* ─── SECTION ─── */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.4;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    /* ─── PHONE FRAME ─── */
+    .phone-frame {
+      width: 180px;
+      border: 2px solid rgba(47,85,138,0.2);
+      border-radius: 22px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .phone-frame.part {
+      width: 240px;
+    }
+
+    .phone-frame.wide {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+    }
+
+    .phone-inner {
+      width: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .phone-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ─── STEPS ─── */
+    .step-item {
+      padding: 32px 0;
+    }
+
+    .step-lead {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 19px;
+    }
+
+    .back-to-toc {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .back-to-toc a {
+      font-size: 0.82rem;
+      color: rgba(16,32,67,0.8);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="toc-label">便利な使い方目次</p>
+  <nav class="toc" id="toc">
+    <a href="#lockwidget"><span class="toc-num">01</span>ロック画面ウィジェット</a>
+    <a href="#homewidget"><span class="toc-num">02</span>ホーム画面ウィジェット</a>
+    <a href="#schedule"><span class="toc-num">03</span>スケジュール</a>
+  </nav>
+
+  <!-- ロック画面ウィジェット -->
+  <h2 class="section-title" id="lockwidget">ロック画面ウィジェット</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">iPhoneを開くことなく、タイマーを確認できます。</p>
+      <div class="phone-frame part">
+        <div class="phone-inner"><img src="img/lwid1.jpg" alt="ロック画面ウィジェット"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">iPhoneを閉じて画面を長押し。</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid2.jpg" alt="ロック画面を長押し"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">「Add Widget」をタップ</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid3.jpg" alt="Add Widgetをタップ"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">リストから「Focus &amp; Fish」を探してタップ</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid4.jpg" alt="Focus &amp; Fishをタップ"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">大小2種類のウィジェットがあるので好きな方を選択</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid5.jpg" alt="ウィジェットを選択"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">最後に画面右上の「Done」を押すのを忘れないで</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/lwid6.jpg" alt="Doneを押す"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">目次に戻る</a></div>
+
+  <div class="divider"></div>
+
+  <!-- ホーム画面ウィジェット -->
+  <h2 class="section-title" id="homewidget">ホーム画面ウィジェット</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">ホーム画面のアイコンを長押ししてホーム画面ウィジェットにすることができます。</p>
+      <div class="phone-frame">
+        <div class="phone-inner"><img src="img/hwid1.jpg" alt="アイコンを長押し"></div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <p class="step-lead">ウィジェットではタイマーの残り時間やチャート画面でセットした締切までの残り時間が確認できます。</p>
+      <div class="phone-frame wide">
+        <div class="phone-inner"><img src="img/hwid2.jpg" alt="ホーム画面ウィジェット"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">目次に戻る</a></div>
+
+  <div class="divider"></div>
+
+  <!-- スケジュール -->
+  <h2 class="section-title" id="schedule">スケジュール</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">設定画面のスケジュールをONにしてスケジュール設定画面を開きます。<br>この画面では任意の曜日、任意の時間に集中タイムを自動で開始させる設定ができます。<br>「Schedule-specific Settings」からはスケジュール専用のブロックアプリと、デフォルトの集中タイム時間を設定できます。</p>
+      <div class="phone-frame wide">
+        <div class="phone-inner"><img src="img/schedule1.jpg" alt="スケジュール設定"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">目次に戻る</a></div>
+
+</body>
+</html>
