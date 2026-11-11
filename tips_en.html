@@ -132,6 +132,14 @@
     .item-body { display:block; margin-top:6px; }
     .btn { display:inline-block; background:rgb(250,140,230); color:#fff; font-weight:700; font-size:0.85rem; text-decoration:none; padding:8px 24px; border-radius:99px; }
 
+    .step-list {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.85;
+      padding-left: 1.2em;
+      margin-bottom: 19px;
+    }
+
     .back-to-toc {
       text-align: center;
       margin-top: 16px;
@@ -151,6 +159,9 @@
     <a href="#lockwidget"><span class="toc-num">01</span>Lock Screen Widget</a>
     <a href="#homewidget"><span class="toc-num">02</span>Home Screen Widget</a>
     <a href="#schedule"><span class="toc-num">03</span>Schedule</a>
+    <a href="#block"><span class="toc-num">04</span>Unintended Apps Are Blocked</a>
+    <a href="#reset"><span class="toc-num">05</span>Reset the Screen</a>
+    <a href="#contact"><span class="toc-num">06</span>Contact Us</a>
   </nav>
 
   <!-- Lock Screen Widget -->
@@ -249,8 +260,48 @@
 
   <div class="divider"></div>
 
+  <!-- Unintended Apps Are Blocked -->
+  <h2 class="section-title" id="block">Unintended Apps Are Blocked</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">If apps aren't blocked or unblocked as expected, this may be caused by an iOS bug. It can also happen with other similar apps. Please try the following:</p>
+      <ul class="step-list">
+        <li>Unselect the apps you want to block, then select them again (this works best)</li>
+        <li>Turn off Screen Time on your other devices (iPad, Mac, etc.)</li>
+        <li>Update iOS to the latest version</li>
+        <li>Restart your iPhone</li>
+      </ul>
+      <p class="step-lead">If YouTube or other apps are blocked unintentionally, also uncheck the domains related to those apps, such as m.youtube.com.</p>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">Back to top</a></div>
+
+  <div class="divider"></div>
+
+  <!-- Reset the Screen -->
+  <h2 class="section-title" id="reset">Reset the Screen</h2>
+
+  <div class="steps">
+
+    <div class="step-item" style="padding-top:8px;">
+      <p class="step-lead">If the app stops responding, try pressing and holding the heart at the top left of the screen. This resets the screen without affecting your fish, gold, or charts.</p>
+      <div class="phone-frame wide flat">
+        <div class="phone-inner"><img src="img/resetbtn_en.jpg" alt="Hold the heart for 3 seconds to reset the screen"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-to-toc"><a href="#toc">Back to top</a></div>
+
+  <div class="divider"></div>
+
   <!-- ─── Bugs & Requests ─── -->
-  <div style="font-size:1rem; line-height:1.85;">
+  <div id="contact" style="font-size:1rem; line-height:1.85;">
     <span class="dot"></span><strong class="item-title">Bugs &amp; Requests</strong>
     <span class="item-body"></span>
     If you find a bug or have a request, please let us know using the form below. Thank you!
