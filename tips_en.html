@@ -259,6 +259,15 @@
     </div>
   </div>
 
+  <div style="font-size:1rem; line-height:1.85; margin-top:36px;">
+    <span class="dot"></span><strong class="item-title">Contact by Email</strong>
+    <span class="item-body"></span>
+    If you can share screenshots or videos, please send them by email using the button below. Thank you!
+    <div style="text-align:center; margin-top:20px;">
+      <a class="btn" id="mailLink" href="mailto:catkin.bracer-4q@icloud.com">Send Email</a>
+    </div>
+  </div>
+
   <script>
   (function () {
     // Query name from the app → Google Form entry ID
@@ -275,6 +284,18 @@
       if (value) url.searchParams.set(FIELDS[key], value);
     });
     link.href = url.toString();
+  })();
+
+  (function () {
+    // Put the ?id= from the app into the email body
+    var link = document.getElementById('mailLink');
+    if (!link) return;
+    var id = new URLSearchParams(location.search).get('id') || '';
+    var subject = 'Focus & Fish Bug Report';
+    var body = 'User ID: ' + id + '\n\nDetails:\n\n';
+    link.href = 'mailto:catkin.bracer-4q@icloud.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
   })();
   </script>
 
